@@ -1,21 +1,29 @@
 #### 01.建立環境設定檔
 複製根目錄下檔案 .env.example，並更名為 .env
 
-#### 02.執行 Dcoker 初始化啟動
-請先安裝 docker
-確認 commandline底下 compose -v 正常執行
+#### 02.install Composer
+[Download](https://getcomposer.org/download/) 請先安裝 Composer
+<p>確認 commandline底下 composer -v 可執行
+
+#### 03.執行 Dcoker 初始化啟動
+[Download](https://docs.docker.com/) 請先安裝 docker
+<p>確認 commandline底下 docker -v 可執行
+<p>
+初始化啟動
 docker-compose up
 
-#### 03.執行 migrate
+#### 04.執行 migrate
 開啟.env
 修改 DB_HOST 改成127.0.0.1
-php artisan migrate
+<p>
+&gt;  php artisan migrate
 
-#### 04.browser 測試
+#### 05.browser 測試
 http://localhost:2337/
+<p>
 若成功 出現Laravel預覽頁
 
-#### 05.其他指令
+#### 06.其他指令
 
 <p>常用Docker指令:</p>
 <pre><code>
