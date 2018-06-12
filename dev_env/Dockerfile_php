@@ -1,0 +1,26 @@
+FROM php:7.1.11-fpm
+RUN apt-get update && apt-get install -y \
+    vim \
+    cron \
+    supervisor \
+    zlib1g-dev \
+    && docker-php-ext-install -j "$(getconf _NPROCESSORS_ONLN)" pdo pdo_mysql mbstring zip
+
+RUN rm -rf /var/lib/apt/lists
+
+COPY ./dev_env/crontab /var/spool/cron/crontabs/root
+RUN chmod 0644 /var/spool/cron/crontabs/root
+RUN crontab /var/spool/cron/crontabs/root
+
+# supervisor
+RUN mkdir -p /var/log/supervisor
+COPY ./dev_env/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
+COPY ./dev_env/supervisor/laravel-worker.conf /etc/supervisor/conf.d/laravel-worker.conf
+#CMD ["/usr/bin/supervisord"]
+
+COPY ./dev_env/entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+
+CMD ["php-fpm"]
+#CMD service php-fpm start
