@@ -1,60 +1,61 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+#### 01.建立環境設定檔
+複製根目錄下檔案 .env.example，並更名為 .env
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+#### 02.install Composer
+[Download](https://getcomposer.org/download/) 請先安裝 Composer
+<p>確認 commandline底下 composer -v 可執行
 
-## About Laravel
+#### 03.執行 Dcoker 初始化啟動
+[Download](https://docs.docker.com/) 請先安裝 docker
+<p>確認 commandline底下 docker -v 可執行
+<p>
+初始化啟動
+docker-compose up
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+#### 04.執行 migrate
+開啟.env
+修改 DB_HOST 改成127.0.0.1
+<p>
+&gt;  php artisan migrate
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#### 05.browser 測試
+http://localhost:2337/
+<p>
+若成功 出現Laravel預覽頁
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+#### 06.其他指令
 
-## Learning Laravel
+<p>常用Docker指令:</p>
+<pre><code>
+&gt; ## 初始啟動docker-compose.yml 
+&gt; docker-compose up
+&gt; ## 關閉docker
+&gt; docker-compose down
+&gt; ## 進入docker 容易內部(請查詢 docker ps)
+&gt; docker exec -ti CONTAINER_ID  bash
+&gt; ## 顯示目前所有容器
+&gt; docker ps -a
+&gt; ## 顯示目前執行忠容器
+&gt; docker ps
+&gt; ## 刪除所有停止容器
+&gt; docker rm $(docker ps -a -q)his
+&gt; ## 刪除單一容器
+&gt; docker rm DOCKER_ID
+&gt; ## 停止Docker容器
+&gt; docker stop DOCKER_ID
+&gt; ## 強制停止Docker容器
+&gt; docker kill DOCKER_ID
+&gt; ## 重新啟動 Docker 容器
+&gt; docker restart DOCKER_ID
+&gt; ## 暫停 Docker 容器
+&gt; docker pause DOCKER_ID
+&gt; 恢復 Docker 容器
+&gt; docker unpause DOCKER_ID
+&gt; 本地複製檔案至容器(copy to:/var/file1 from:/var/file2)
+&gt; docker cp /var/file1 DOCKER_ID:/var/file2
+&gt; 容器複製檔案至本地(copy to:/var/file2 from:/var/file1)
+&gt; docker cp DOCKER_ID:/var/file2 /var/file1
+&gt; 複製目錄
+&gt; docker cp DOCKER_ID:/var/file_folder /var/
+</code></pre>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
